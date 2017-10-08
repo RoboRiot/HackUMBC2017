@@ -20,11 +20,11 @@ public class Recipe
     private int prepTime;
     private int fullTime;
 
-<<<<<<< HEAD
-    public Recipe(String newName, String[] newIngredientsName,String[] newIngredientsAmount,ServingType[] newIngredientAmountType,String[] newSteps)
-=======
+
+//    public Recipe(String newName, String[] newIngredientsName,String[] newIngredientsAmount,ServingType[] newIngredientAmountType,String[] newSteps)
+
     public Recipe(String newName, String[] newIngredientsName,String[] newIngredientsAmount,ServingType[] newIngredientAmountType,String[] newSteps,String newDescription, int newPrepTime,int newFullTime)
->>>>>>> 9a2e7fd62bbd091c0ebb6bd3a318c3c4178881af
+
     {
         name = newName;
         ingredientName = newIngredientsName;
