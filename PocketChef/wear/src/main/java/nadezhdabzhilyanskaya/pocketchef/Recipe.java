@@ -19,14 +19,12 @@ public class Recipe
     private String description;
     private int prepTime;
     private int fullTime;
-<<<<<<< HEAD
+
 
 
 //    public Recipe(String newName, String[] newIngredientsName,String[] newIngredientsAmount,ServingType[] newIngredientAmountType,String[] newSteps)
 
-=======
-  
->>>>>>> 12e5a908c8325ee8054bf04953b12b648bcd3474
+
     public Recipe(String newName, String[] newIngredientsName,String[] newIngredientsAmount,ServingType[] newIngredientAmountType,String[] newSteps,String newDescription, int newPrepTime,int newFullTime)
 
     {

@@ -24,23 +24,21 @@ import android.content.Intent;
 import android.widget.ListView;
 import android.speech.RecognizerIntent;
 
-<<<<<<< HEAD
+
 import java.io.BufferedReader;
-=======
+
 import org.apache.commons.io.IOUtils;
 
 import java.io.BufferedInputStream;
->>>>>>> 12e5a908c8325ee8054bf04953b12b648bcd3474
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-<<<<<<< HEAD
+
 import java.io.StringWriter;
 import java.io.InputStreamReader;
-=======
->>>>>>> 12e5a908c8325ee8054bf04953b12b648bcd3474
+
 
 
 public class MainActivity extends WearableActivity{
@@ -67,9 +65,11 @@ public class MainActivity extends WearableActivity{
 
         String name = "Hello World!!!!";
 
-        getRequest();
+        //getRequest();
+
+
 //        TextView text = (TextView) findViewById(R.id.recipe);
-//        text.setText(name);
+//      text.setText(name);
 
         //startVoiceRecognitionActivity();
     }
@@ -178,7 +178,7 @@ public class MainActivity extends WearableActivity{
     }
 
 
-<<<<<<< HEAD
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
 
@@ -189,7 +189,7 @@ public class MainActivity extends WearableActivity{
 //
 //            mList.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, matches));
 //
-=======
+
             ArrayList matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             //TextView text = (TextView) findViewById(R.id.recipe);
             //text.setText("sdfbwasjd");
@@ -208,7 +208,7 @@ public class MainActivity extends WearableActivity{
             mList.setAdapter(adapter);
             //mList.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, matches));
            // getRequest();
->>>>>>> 12e5a908c8325ee8054bf04953b12b648bcd3474
+
 
            /* if (matches.contains("information")) {
                 informationMenu();
@@ -216,42 +216,42 @@ public class MainActivity extends WearableActivity{
 //        }
     }
 
-    public void getRequest() {
-        String result = null;
-        StringBuffer sb = new StringBuffer();
-        InputStream in = null;
-        try {
-            URL url = new URL("http://chefaccesor.mybluemix.net/recipes");
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            //urlConnection.connect();
-            //TextView text = (TextView) findViewById(R.id.recipe);
-            //text.setText(urlConnection.toString());
-            try {
-                urlConnection.setDoInput(true);
-                urlConnection.setDoOutput(true);
-
-                urlConnection.getInputStream();
-            }finally{
-                urlConnection.disconnect();
-            }
-            //StringWriter writer = new StringWriter();
-            //IOUtils.copy(in,writer);
-            //String str = writer.toString();
-
-            //TextView text = (TextView) findViewById(R.id.recipe);
-            //text.setText(str);
-            //readStream(in);
-            urlConnection.disconnect();
-        } catch (MalformedURLException e) {
-            //Do nothing
-        } catch (IOException e) {}
-        /*try {
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            readStream(in);
-        } finally {
-            urlConnection.disconnect();
-        }*/
-    }
+//    public void getRequest() {
+//        String result = null;
+//        StringBuffer sb = new StringBuffer();
+//        InputStream in = null;
+//        try {
+//            URL url = new URL("http://chefaccesor.mybluemix.net/recipes");
+//            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+//            //urlConnection.connect();
+//            //TextView text = (TextView) findViewById(R.id.recipe);
+//            //text.setText(urlConnection.toString());
+//            try {
+//                urlConnection.setDoInput(true);
+//                urlConnection.setDoOutput(true);
+//
+//                urlConnection.getInputStream();
+//            }finally{
+//                urlConnection.disconnect();
+//            }
+//            //StringWriter writer = new StringWriter();
+//            //IOUtils.copy(in,writer);
+//            //String str = writer.toString();
+//
+//            //TextView text = (TextView) findViewById(R.id.recipe);
+//            //text.setText(str);
+//            //readStream(in);
+//            urlConnection.disconnect();
+//        } catch (MalformedURLException e) {
+//            //Do nothing
+//        } catch (IOException e) {}
+//        /*try {
+//            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+//            readStream(in);
+//        } finally {
+//            urlConnection.disconnect();
+//        }*/
+//    }
 
     private class StableArrayAdapter extends ArrayAdapter<String> {
 

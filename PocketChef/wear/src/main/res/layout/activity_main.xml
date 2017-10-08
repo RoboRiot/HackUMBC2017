@@ -30,10 +30,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-<<<<<<< HEAD
 
-=======
->>>>>>> 12e5a908c8325ee8054bf04953b12b648bcd3474
+
         <TextView
             android:id="@+id/recipe"
             android:layout_width="wrap_content"
@@ -41,7 +39,7 @@
             android:maxLines="100"
             android:gravity="center_horizontal"
             />
-<<<<<<< HEAD
+
 
         <!--<ListView-->
     <!--android:id="@+id/list"-->
@@ -50,8 +48,7 @@
 
 
 <!--</ListView>-->
-=======
->>>>>>> 12e5a908c8325ee8054bf04953b12b648bcd3474
+
 </ScrollView>
 </LinearLayout>
 
