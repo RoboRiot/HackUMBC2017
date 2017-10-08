@@ -52,6 +52,15 @@ public class MainActivity extends WearableActivity{
     private TextView mTextView;
     private TextView mClockView;
 
+    private final int TITLE_SCREEN = -2;
+    private final int INGREEDIENT_SCREEN = -1;
+
+    private Recipe rec;
+    private int currentStep;
+    private int totalSteps;
+    private int lastStep;
+    private boolean firstTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +70,7 @@ public class MainActivity extends WearableActivity{
         mContainerView = (BoxInsetLayout) findViewById(R.id.container);
         mTextView = (TextView) findViewById(R.id.text);
         //mClockView = (TextView) findViewById(R.id.clock);
+<<<<<<< HEAD
         //mList = (ListView) findViewById(R.id.list);
 
         String name = "Hello World!!!!";
@@ -72,6 +82,30 @@ public class MainActivity extends WearableActivity{
 //      text.setText(name);
 
         //startVoiceRecognitionActivity();
+=======
+
+        currentStep = TITLE_SCREEN;
+        lastStep = 0;
+        firstTime = true;
+
+        String name = "Easy Homemade Mashed Potatoes";
+        String[] ingredientName = {"potatoes","salt","butter","pepper","hot milk"};
+        String[] ingredientAmount = {"8", "1", "2","1","1/4"};
+        Recipe.ServingType[] types= {Recipe.ServingType.NONE, Recipe.ServingType.TEASPOON, Recipe.ServingType.TABLESPOON, Recipe.ServingType.TEASPOON, Recipe.ServingType.CUP};
+        String[] steps = {"Place potatoes in large saucepan; add enough water to cover. Add 3/4 teaspoon of the salt. Bring to a boil. Reduce heat to medium-low; cover loosely and boil gently for 15 to 20 minutes or until potatoes break apart easily when pierced with fork. Drain well.",
+                "Return potatoes to saucepan; shake saucepan gently over low heat for 1 to 2 minutes to evaporate any excess moisture.",
+                "Mash potatoes with potato masher until no lumps remain. Add margarine, pepper and remaining 1/4 teaspoon salt; continue mashing, gradually adding enough milk to make potatoes smooth and creamy."
+        };
+        String description = "Enjoy a classic all-time favorite - smooth and creamy mashed potatoes make the perfect side dish for any meal.";
+        int prepTime = 25;
+        int fullTime = 45;
+
+        totalSteps = steps.length;
+        rec = new Recipe(name,ingredientName,ingredientAmount,types,steps,description,prepTime,fullTime);
+
+
+        startVoiceRecognitionActivity();
+>>>>>>> b095e587722acdc93eaa510a0026c7f19b112142
     }
 
     @Override
@@ -116,8 +150,27 @@ public class MainActivity extends WearableActivity{
                 "What recipe do you want to make?");
         startActivityForResult(intent, VOICE_RECOGNITION_REQUEST_CODE);
     }
+<<<<<<< HEAD
+=======
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-    public void getRequest() {
+        if (requestCode == VOICE_RECOGNITION_REQUEST_CODE && resultCode == RESULT_OK) {
+
+            ArrayList matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            TextView text = (TextView) findViewById(R.id.recipe);
+            text.setText(rec.getNameDescription());
+
+           // getRequest();
+
+           /* if (matches.contains("information")) {
+                informationMenu();
+            }*/
+        }
+    }
+>>>>>>> b095e587722acdc93eaa510a0026c7f19b112142
+
+   /* public void getRequest() {
         String result = null;
         StringBuffer sb = new StringBuffer();
         InputStream in = null;
@@ -175,7 +228,7 @@ public class MainActivity extends WearableActivity{
         } finally {
             urlConnection.disconnect();
         }*/
-    }
+    /*}
 
 
 
@@ -276,29 +329,59 @@ public class MainActivity extends WearableActivity{
             return true;
         }
 
-    }
+    }*/
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        TextView text = (TextView) findViewById(R.id.title);
 
-
+        if(firstTime)
+        {
+            firstTime = false;
+            currentStep++;
+            changeStep();
+            return true;
+        }
+        if(currentStep != INGREEDIENT_SCREEN && currentStep !=TITLE_SCREEN){lastStep = currentStep;}
         switch (keyCode) {
             case KeyEvent.KEYCODE_NAVIGATE_NEXT:
-                text.setText("next");
+                if(currentStep == INGREEDIENT_SCREEN){currentStep = lastStep;}
+                else {currentStep++;}
+                changeStep();
                 return true;
             case KeyEvent.KEYCODE_NAVIGATE_PREVIOUS:
-                text.setText("previous");
+                currentStep--;
+                changeStep();
                 return true;
             case KeyEvent.KEYCODE_NAVIGATE_IN:
-                text.setText("in");
+                currentStep = INGREEDIENT_SCREEN;
+                changeStep();
                 return true;
             case KeyEvent.KEYCODE_NAVIGATE_OUT:
-                text.setText("out");
+                currentStep = INGREEDIENT_SCREEN;
+                changeStep();
                 return true;
             default:
-                text.setText("something else");
+                //do nothing
                 return super.onKeyDown(keyCode, event);
         }
+    }
+
+    private void changeStep()
+    {
+        TextView text = (TextView) findViewById(R.id.recipe);
+
+        if(currentStep == totalSteps)
+        {
+            currentStep--;
+            return;
+        }
+        if(currentStep < TITLE_SCREEN)
+        {
+            currentStep = TITLE_SCREEN;
+            return;
+        }
+        if(currentStep == TITLE_SCREEN) {text.setText(rec.getNameDescription());}
+        else if(currentStep == INGREEDIENT_SCREEN) {text.setText(rec.ingredentListToString());}
+        else{text.setText(rec.stepsToString(currentStep));}
     }
 
 }
